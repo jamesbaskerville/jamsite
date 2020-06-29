@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <div class="container">
-      <FirstName class="header col-1"></FirstName>
-      <LastName class="header col-2"></LastName>
-      <Nav class="nav col-1"></Nav>
-      <router-view class="content"/>
+      <FirstName class="header left"></FirstName>
+      <LastName class="header middle"></LastName>
+      <Nav class="nav left"></Nav>
+      <router-view class="content middle"/>
     </div>
   </div>
 </template>
@@ -27,7 +27,7 @@ export default {
 @import 'assets/styles/shared';
 
 body {
-  background-color: whitesmoke;
+  background-color: $color-white;
 }
 
 /* global styles */
@@ -38,9 +38,9 @@ body {
   color: $color-black;
 }
 
-a,
-a:visited {
-  color: $color-black;
+a {
+  text-decoration: none;
+  color: $color-blue;
 }
 
 p {
@@ -54,33 +54,31 @@ p {
   grid-template-rows: 10% 10% 70% 10%;
 
   /* nav, body */
-  grid-template-columns: 120px 70%;
+  grid-template-columns: 112px 80%;
 }
 
-.col-1 {
-  grid-column-start: 1;
-  grid-column-end: 2;
+.left {
+  grid-column: 1 / 2;
 }
 
-.col-2 {
-  grid-column-start: 2;
-  grid-column-end: 3;
+.middle {
+  grid-column: 2 / 3;
 }
 
 .header {
-  grid-row-start: 1;
-  grid-row-end: 2;
+  grid-row: 1 / 2;
 }
 
 .nav {
-  grid-row-start: 2;
-  grid-row-end: 3;
+  grid-row: 2 / 3;
+}
+
+.connect {
+  grid-row: 3 / 4;
 }
 
 .content {
-  grid-column-start: 2;
-  grid-row-start: 2;
-  grid-row-end: 4;
+  grid-row: 2 / 4;
 }
 
 /* main content shared styles */

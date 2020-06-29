@@ -1,4 +1,8 @@
-$color-black: #2c3e50;
+$color-black: #141414;
+$color-blue: #23396C;
+$color-orange: #DD5B2C;
+$color-grey: #D4D0c4;
+$color-white: #F5F5F5;
 
 @mixin code-font() {
   font-family: 'Roboto Mono', monospace;
@@ -6,4 +10,33 @@ $color-black: #2c3e50;
 
 @mixin prose-font() {
   font-family: 'Open Sans', sans-serif;
+}
+
+$base-ghost-color: rgba(221, 221, 221, 0.644);
+$ghost-color: #ecebebf1;
+$animation-duration: 1000ms; 
+
+@mixin background-gradient { 
+  background-image: linear-gradient(90deg, $base-ghost-color 0px, $ghost-color 40px, $base-ghost-color 80px);
+  background-size: 80vw;
+}
+
+@keyframes ghost { 
+  0%   { background-position: -50px;  }
+  50%  { background-position: 50vw;    }
+  100% { background-position: 80vw;    }
+}
+
+@mixin animate-ghost {
+  @include background-gradient;
+  animation: ghost $animation-duration infinite linear;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
 }

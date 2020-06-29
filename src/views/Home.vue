@@ -1,16 +1,16 @@
 <template>
-  <div class='about'>
+  <div class='home'>
     <h2>Hey there!</h2>
-    <p class='body-p'>
+    <p>
       My name is James.
     </p>
-    <p class='body-p'>
-      I love problem solving in all its forms: software engineering, crossword puzzles, climbing, etc.
+    <p>
+      Things I enjoy, in random order: singing, crossword puzzles, volleyball, climbing, novels, card/board games.
     </p>
-    <p class='body-p'>
+    <p>
       Currently a software engineer at Square Capital.
     </p>
-    <p class='body-p'>
+    <p>
       Take a look around :)
     </p>
   </div>
@@ -21,7 +21,3 @@ export default {
   name: 'Home'
 }
 </script>
-
-<style lang="scss">
-
-</style>

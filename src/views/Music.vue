@@ -1,6 +1,11 @@
 <template>
   <div class="music">
     <h2>Experiments w/ Music</h2>
+
+    <div class="iframe-container">
+      <div class="loading"></div>
+      <iframe width="100%" height="265" src="https://clyp.it/0eafvrxq/widget" frameborder="0"></iframe>
+    </div>
   </div>
 </template>
 
@@ -9,3 +14,30 @@ export default {
   name: 'Music',
 }
 </script>
+
+<style scoped lang="scss">
+@import '../assets/styles/shared';
+
+.iframe-container {
+  position: relative;
+  width: 100%;
+  height: 265px;
+}
+
+.iframe-container .loading {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  @include animate-ghost;
+}
+
+
+
+.iframe-container iframe {
+  position: relative;
+  background: transparent;
+  z-index: 1;
+  opacity: 1;
+  animation: fadeIn 1000ms ease-in;
+}
+</style>

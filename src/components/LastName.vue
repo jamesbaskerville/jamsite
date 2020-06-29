@@ -1,6 +1,8 @@
 <template>
-  <div id="last-name" class="header">
-    <h1>Baskerville</h1>
+  <div id="last-name" class="last-name">
+    <router-link to='/'>
+      <h1>Baskerville</h1>
+    </router-link>
   </div>
 </template>
 
@@ -12,8 +14,11 @@ export default {
 
 <style lang="scss"> 
 @import '../assets/styles/shared';
-.header {
+.last-name {
   @include code-font();
-  text-align: left;
+
+  a {
+    color: $color-black;
+  }
 }
 </style>
