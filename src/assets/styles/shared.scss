@@ -1,0 +1,9 @@
+$color-black: #2c3e50;
+
+@mixin code-font() {
+  font-family: 'Roboto Mono', monospace;
+}
+
+@mixin prose-font() {
+  font-family: 'Open Sans', sans-serif;
+}

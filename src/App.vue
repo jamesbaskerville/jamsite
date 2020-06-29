@@ -1,32 +1,95 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div class="container">
+      <FirstName class="header col-1"></FirstName>
+      <LastName class="header col-2"></LastName>
+      <Nav class="nav col-1"></Nav>
+      <router-view class="content"/>
     </div>
-    <router-view/>
   </div>
 </template>
 
-<style>
+<script>
+import FirstName from '@/components/FirstName';
+import LastName from '@/components/LastName';
+import Nav from '@/components/Nav';
+export default {
+  name: 'Home',
+  components: {
+    'FirstName': FirstName,
+    'LastName': LastName,
+    'Nav': Nav,
+  }
+}
+</script>
+
+<style lang="scss">
+@import 'assets/styles/shared';
+
+body {
+  background-color: whitesmoke;
+}
+
+/* global styles */
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  @include prose-font();
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  color: $color-black;
 }
 
-#nav {
-  padding: 30px;
+a,
+a:visited {
+  color: $color-black;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+p {
+  margin: 0;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+.container {
+  margin: 0 24px;
+  display: grid;
+  /* header, nav, body, footer */
+  grid-template-rows: 10% 10% 70% 10%;
+
+  /* nav, body */
+  grid-template-columns: 120px 70%;
+}
+
+.col-1 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+.col-2 {
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+.header {
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.nav {
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.content {
+  grid-column-start: 2;
+  grid-row-start: 2;
+  grid-row-end: 4;
+}
+
+/* main content shared styles */
+.content h2 {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.content p {
+  margin-bottom: 8px;
 }
 </style>
