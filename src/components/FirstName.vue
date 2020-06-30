@@ -18,7 +18,7 @@ export default {
   @include code-font();
 
   a {
-    color: $color-black;
+    color: var(--color-text, $color-black);
   }
 }
 </style>

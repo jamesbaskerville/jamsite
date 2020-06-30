@@ -27,7 +27,7 @@ export default {
 @import 'assets/styles/shared';
 
 body {
-  background-color: $color-white;
+  background-color: var(--color-background, $color-white);
 }
 
 /* global styles */
@@ -35,12 +35,12 @@ body {
   @include prose-font();
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: $color-black;
+  color: var(--color-text, $color-black);
 }
 
 a {
   text-decoration: none;
-  color: $color-blue;
+  color: var(--color-main, $color-blue);
 }
 
 p {
