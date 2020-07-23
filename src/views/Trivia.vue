@@ -178,7 +178,7 @@ export default {
   },
   async created() {
     const vm = this;
-    const categoryIds = await fetch('http://jservice.io/api/random?count=5')
+    const categoryIds = await fetch('https://jservice.io/api/random?count=5')
       .then((response) => response.json())
       .then((data) => data.map(q => q.category_id));
 
@@ -187,7 +187,7 @@ export default {
     let categories = [];
 
     await Promise.all(categoryIds.map(async (id) => {
-      const cluesForCategory = await fetch(`http://jservice.io/api/category?id=${id}`)
+      const cluesForCategory = await fetch(`https://jservice.io/api/category?id=${id}`)
         .then((response) => response.json())
         .then((data) => {
           return {
