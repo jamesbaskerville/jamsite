@@ -1,7 +1,5 @@
 <template>
-  <div class="code">
-    <h2>Random Coding Projects</h2>
-  </div>
+  <router-view />
 </template>
 
 <script>

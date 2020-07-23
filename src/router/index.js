@@ -1,28 +1,48 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Site from '../views/Site.vue'
 
 // route level code-splitting
+const Home = () => import(/* webpackChunkName: "home" */ '../views/Home.vue')
 const Code = () => import(/* webpackChunkName: "code" */ '../views/Code.vue')
+const CodeHome = () => import(/* webpackChunkName: "code-home" */ '../components/CodeHome.vue')
 const Music = () => import(/* webpackChunkName: "music" */ '../views/Music.vue')
+const Trivia = () => import(/* webpackChunkName: "trivia" */ '../views/Trivia.vue')
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: '/site',
+    component: Site,
+    children: [
+      {
+        path: '',
+        name: 'Home',
+        component: Home
+      },
+      {
+        path: 'code',
+        component: Code,
+        children: [
+          {
+            path: '',
+            name: 'Code',
+            component: CodeHome
+          },
+        ],
+      },
+      {
+        path: 'music',
+        name: 'Music',
+        component: Music
+      }
+    ],
   },
   {
-    path: '/code',
-    name: 'Code',
-    component: Code
-  },
-  {
-    path: '/music',
-    name: 'Music',
-    component: Music
+    path: '/trivia',
+    name: 'Trivia',
+    component: Trivia
   }
 ]
 

@@ -29,17 +29,17 @@ export default {
       {
           id: 0,
           name: '/',
-          page: '/'
+          page: '/site'
         },
         {
           id: 1,
           name: '/code',
-          page: '/code'
+          page: '/site/code'
         },
         {
           id: 2,
           name: '/music',
-          page: '/music'
+          page: '/site/music'
         }
       ],
       externalLinks: [
@@ -80,7 +80,7 @@ export default {
   margin-bottom: 8px;
 }
 
-.router-link-exact-active .nav-link {
+.router-link-active .nav-link {
   font-weight: 600;
   font-size: 24px;
   color: $color-orange;
