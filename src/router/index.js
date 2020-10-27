@@ -8,6 +8,8 @@ const Code = () => import(/* webpackChunkName: "code" */ '../views/Code.vue')
 const CodeHome = () => import(/* webpackChunkName: "code-home" */ '../components/CodeHome.vue')
 const Music = () => import(/* webpackChunkName: "music" */ '../views/Music.vue')
 const Trivia = () => import(/* webpackChunkName: "trivia" */ '../views/Trivia.vue')
+const Contact = () => import(/* webpackChunkName: "contact" */ '../views/Contact.vue')
+
 
 Vue.use(VueRouter)
 
@@ -36,6 +38,11 @@ const routes = [
         path: 'music',
         name: 'Music',
         component: Music
+      },
+      {
+        path: 'contact',
+        name: 'Contact',
+        component: Contact
       }
     ]
   },

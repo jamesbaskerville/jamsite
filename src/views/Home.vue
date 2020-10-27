@@ -21,3 +21,7 @@ export default {
   name: 'Home'
 }
 </script>
+
+<style scoped lang="scss">
+@import '../assets/styles/shared';
+</style>

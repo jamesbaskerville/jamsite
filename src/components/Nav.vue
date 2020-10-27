@@ -14,45 +14,62 @@
       v-bind:key="link.id"
       :href="`${link.url}`">
       <font-awesome-icon
+        v-if="link.icon"
         v-bind:icon="link.icon"
-        size="2x"/>
+        size="2x" />
+      <img v-else
+        :src="link.customIcon" />
+    </a>
+    <a class="grow nav-icon custom-icon"
+      target="_blank"
+      href="https://www.jemi.app/james">
+        <JemiSVG />
       </a>
    </nav>
 </template>
 
 <script>
+import JemiSVG from '@/assets/icons/jemi';
 export default {
   name: 'Nav',
+  components: {
+    JemiSVG,
+  },
   data() {
     return {
       internalLinks: [
       {
           id: 0,
           name: '/',
-          page: '/site'
+          page: '/'
         },
         {
           id: 1,
           name: '/code',
-          page: '/site/code'
+          page: '/code'
         },
         {
           id: 2,
           name: '/music',
-          page: '/site/music'
+          page: '/music'
+        },
+        {
+          id: 3,
+          name: '/contact',
+          page: '/contact'
         }
       ],
       externalLinks: [
         {
-          id: 3,
+          id: 4,
           icon: ['fab', 'github-square'],
           url: 'https://github.com/jamesbaskerville',
         },
         {
-          id: 4,
+          id: 5,
           icon: ['fab', 'linkedin'],
           url: 'https://www.linkedin.com/in/jamesbaskerville/',
-        }
+        },
       ]
     }
   }
@@ -73,16 +90,33 @@ export default {
 
 .nav-link { 
   margin-bottom: 16px;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .nav .nav-icon {
   margin-bottom: 8px;
 }
 
+.custom-icon {
+  svg {
+    font-size: 2em;
+    width: 0.875em;
+    height: 1em;
+    display: inline-block;
+    height: 1em;
+    vertical-align: -0.125em;
+  }
+}
+
+.custom-icon:hover {
+  path {
+    fill: $color-orange;
+  }
+}
+
 .router-link-active .nav-link {
   font-weight: 600;
-  font-size: 24px;
+  font-size: 20px;
   color: $color-orange;
   &:hover {
     transform: none;

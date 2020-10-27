@@ -34,11 +34,10 @@ export default {
 </script>
 
 <style scoped lang='scss'>
-@import '../assets/styles/shared';
+@import '@/assets/styles/shared';
 .trivia-card {
   border-radius: 16px;
   background-color: $color-blue;
-  width: 240px;
   height: 120px;
   font-size: 32px;
   color: $color-white;
