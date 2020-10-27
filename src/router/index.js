@@ -13,7 +13,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/site',
+    path: '/',
     component: Site,
     children: [
       {
@@ -37,7 +37,7 @@ const routes = [
         name: 'Music',
         component: Music
       }
-    ],
+    ]
   },
   {
     path: '/trivia',
