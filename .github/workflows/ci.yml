@@ -9,8 +9,6 @@ on:
 jobs:
   merge-me:
     name: Auto-merge dependabot PRs
-    needs:
-      - cypress-run
     runs-on: ubuntu-latest
     steps:
       - name: Merge me!
