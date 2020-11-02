@@ -16,7 +16,7 @@
             <h2>{{category.title}}</h2>
           </div>
           <div class="category-cards">
-            <TriviaCard @flip-card="setActiveQuestion"
+            <TriviaCard @flip-card="setActiveCard"
               v-for="card in category.cards"
               v-bind:key="card.id"
               :category="category.title"
@@ -37,7 +37,26 @@
       <div class="answer">
         <p>{{answerText}}</p>
       </div>
-      <button @click="closeAnswer">Close</button>
+      <div class="answer-card__button-row">
+        <span class="point-value">
+          +{{ this.activePoints }}
+        </span>
+        <button v-for="playerName in playerNames"
+          @click="addScore(playerName)"
+          class="success-button">
+          {{ playerName }}
+        </button>
+      </div>
+      <div class="answer-card__button-row">
+        <span class="point-value">
+          –{{ this.activePoints }}
+        </span>
+        <button v-for="playerName in playerNames"
+          @click="subtractScore(playerName)"
+          class="fail-button">
+          {{ playerName }}
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -51,11 +70,27 @@ export default {
     Scoreboard,
     TriviaCard,
   },
+  computed: {
+     playerNames() {
+      return this.$store.state.playerScores.map((p) => p.name);
+    },
+    questionText() {
+      return this.activeCard ? this.activeCard.question : '';
+    },
+    answerText() {
+      return this.activeCard ? this.activeCard.answer : '';
+    },
+    categoryText() {
+      return this.activeCard ? this.activeCard.category : '';
+    },
+    activePoints() {
+      return this.activeCard ? this.activeCard.value : 0;
+    },
+
+  },
   methods: {
-    setActiveQuestion(question, answer, category) {
-      this.questionText = question;
-      this.answerText = answer;
-      this.categoryText = category;
+    setActiveCard(card) {
+      this.activeCard = card;
       this.shouldShowQuestion = true;
     },
     showAnswer() {
@@ -63,9 +98,7 @@ export default {
       this.shouldShowAnswer = true;
     },
     closeAnswer() {
-      this.questionText = '';
-      this.answerText = '';
-      this.categoryText = '';
+      this.activeCard = null;
       this.shouldShowAnswer = false;
     },
     cardFromClue(clue) {
@@ -75,6 +108,20 @@ export default {
         question: clue.question,
         answer: clue.answer,
       }
+    },
+    addScore(playerName) {
+      this.$store.commit(
+        'updateScore',
+        { playerName, scoreDelta: this.activePoints }
+      );
+      this.closeAnswer();
+    },
+    subtractScore(playerName, points) {
+      this.$store.commit(
+        'updateScore',
+        { playerName, scoreDelta: -1 * this.activePoints }
+      );
+      this.closeAnswer();
     }
   },
   async created() {
@@ -106,15 +153,13 @@ export default {
     }));
 
     this.categories = categories;
-    console.log(this.categories[0].cards);
   },
   data() {
     return {
       name: 'hi',
+      activeCard: null,
       shouldShowQuestion: false,
-      questionText: '',
       shouldShowAnswer: false,
-      answerText: '',
       categories: [],
     };
   }
@@ -217,16 +262,46 @@ export default {
   grid: "question" 4fr
         "footer"   1fr
         / 1fr;
+}
+
+.question-card button {
+  margin-top: 32px;
+  background-color: $color-dark-blue;
+  color: $color-white;
+  padding: 16px;
+  font-size: 24px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  border: none;
+}
+
+.answer-card .answer-card__button-row {
+  font-size: 36px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  column-gap: 24px;
+  margin-bottom: 16px;
+
+  .point-value {
+    margin-right: 36px;
+  }
 
   button {
-    margin-top: 32px;
-    background-color: $color-dark-blue;
     color: $color-white;
     padding: 16px;
     font-size: 24px;
-    border-bottom-left-radius: 16px;
-    border-bottom-right-radius: 16px;
+    border-radius: 16px;
     border: none;
+  }
+
+  button.success-button {
+    background-color: $color-dark-blue;
+  }
+
+  button.fail-button {
+    background-color: $color-orange;
   }
 }
 

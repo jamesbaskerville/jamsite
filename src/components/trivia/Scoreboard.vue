@@ -4,7 +4,7 @@
       v-for="player in players"
       :key="player.name">
       <span class="name">{{player.name}}</span>
-      <span class="score">{{player.score}}</span>
+      <AnimatedInteger class="score" :value="player.score"/>
     </div>
     <form class="add-player" @submit.prevent="addPlayer">
       <input class="add-player-input"
@@ -18,22 +18,27 @@
 </template>
 
 <script>
+import AnimatedInteger from '../AnimatedInteger.vue';
+import { mapGetters } from 'vuex';
 export default {
-  name: 'TriviaCard',
+  name: 'Scoreboard',
+  components: {
+    AnimatedInteger,
+  },
   methods: {
     addPlayer() {
-      const newPlayer = Object.freeze({
-        name: this.newPlayerName,
-        score: 1000,
-      });
-      this.players.push(newPlayer);
+      this.$store.commit('addPlayer', this.newPlayerName);
       this.newPlayerName = '';
+    },
+  },
+  computed: {
+    players() {
+      return this.$store.state.playerScores;
     }
   },
   data() {
     return {
       newPlayerName: '',
-      players: [],
     }
   }
 }

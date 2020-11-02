@@ -15,15 +15,10 @@ export default {
     flipCard() {
       const vm = this;
       if (!vm.invisible) {
-        this.$emit(
-          'flip-card',
-          this.question,
-          this.answer,
-          this.category
-        );
+        this.$emit('flip-card', this);
         this.invisible = true;
       }
-    }
+    },
   },
   data() {
     return {
